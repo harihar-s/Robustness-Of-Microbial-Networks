@@ -13,4 +13,4 @@ To run the code enter the command
 ./exec attackType dataFile
 ```
 
-where attackType is one of {"maxdegree"} and dataFile is the name of the text file with the adjacency matrix.
+where attackType is one of {"maxdegree", "maxstrength"} and dataFile is the name of the text file with the adjacency matrix.
