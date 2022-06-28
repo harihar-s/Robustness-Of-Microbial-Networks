@@ -58,33 +58,14 @@ int maxDegree(int n, vector<int> adj[], set<int> &nodes){
         return 0;
     }
     else{
-        int i, u = 0;
+        int i, u = *(nodes.begin()), mx = 0;
         for(i=0; i<n; i++){
             if(nodes.find(i)!=nodes.end() && adj[i].size()>adj[u].size()){
                 u = i;
             }
         }
-        vector<int> pos, ans;
-        for(i=0;  i<n; i++){
-            if(nodes.find(i)!=nodes.end() && adj[i].size()==adj[u].size()){
-                pos.push_back(i);
-            }
-        }
-        for(auto v: pos){
-            nodes.erase(v);
-            ans.push_back(1+maxDegree(n, adj, nodes));
-            nodes.insert(v);
-        }
-        if(ans.empty()){
-            return 0;
-        }
-        else{
-            int mx = ans[0];
-            for(auto x: ans){
-                mx = max(mx, x);
-            }
-            return mx;
-        }
+        nodes.erase(u);
+        return 1+maxDegree(n, adj, nodes);
     }
 }
 
@@ -106,7 +87,6 @@ int maxStrength(int n, vector<vector<double> > &adjM, vector<int> adj[], set<int
             }
         }
         nodes.erase(u);
-        cout << u << " " << mx << "\n";
         return 1+maxStrength(n, adjM, adj, nodes);
     }
 }
@@ -151,13 +131,6 @@ int main(int argc, char** argv){
             set<int> nodes;
             for(i=0; i<n; i++){
                 nodes.insert(i);
-            }
-            cout << n << "\n";
-            for(i=0; i<n; i++){
-                for(auto u: adj[i]){
-                    cout << u << " ";
-                }
-                cout << endl;
             }
             if(strcasecmp(argv[1], "maxdegree")==0){
                 cout << maxDegree(n, adj, nodes) << "\n";

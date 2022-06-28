@@ -29,4 +29,6 @@ print("Transitivity Coefficient")
 print(nx.transitivity(G))
 print("Clustering Coefficient Of Each Node")
 print(nx.clustering(G, weight = "weight"))
+print("\n\n Average Clustering Coefficient: ")
+print(nx.average_clustering(G, weight = "weight"))
 
